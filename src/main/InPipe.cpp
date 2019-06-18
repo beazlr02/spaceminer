@@ -1,12 +1,9 @@
 #include "InPipe.h"
 #include <sys/types.h>  // mkfifo
 #include <sys/stat.h>   // mkfifo
-
 #include <stdio.h>
 #include <iostream>
-
 #include <string>
-
 
 InPipe::InPipe() : handle() 
 {
@@ -19,33 +16,30 @@ void InPipe::forever()
         loop();
     }
 }
-
 void InPipe::loop()
+{    
+    cout << "loop" << '\n';
+    if ( ! handle.is_open() )
+    {
+        pipe();   
+    }
+
+    readOneLine();
+}
+void InPipe::readOneLine()
 {
     string line;
-    cout << "loop" << '\n';
-    if (handle.is_open())
+    if(getline(handle, line))  
     {
-        if(getline(handle, line))  
-        {
-            cout << line << '\n';
-        }
-        else
-        {
-            cout << "close" << '\n';
-            handle.close();
-            pipe();
-        }
+        cout << line << '\n';
     }
     else
     {
+        cout << "close" << '\n';
+        handle.close();
         pipe();
-        getline(handle, line);
-        cout << line << '\n';
     }
-
 }
-
 void InPipe::pipe() {
     int fifo = mkfifo("/tmp/fifo", S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
     handle.open("/tmp/fifo");

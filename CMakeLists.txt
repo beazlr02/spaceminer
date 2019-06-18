@@ -16,7 +16,7 @@ set(MAIN_SRC "${PROJECT_SOURCE_DIR}/src/main")
 include_directories("${MAIN_SRC}")
 
 #define a variable SOURCES
-file(GLOB_RECURSE SOURCES "${MAIN_SRC}/*.cpp")
+file( GLOB_RECURSE SOURCES "${MAIN_SRC}/*.cpp" )
 
 # maybe use find_library at some point when linking becomes fun
 
