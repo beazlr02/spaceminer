@@ -1,23 +1,37 @@
 #include "SpaceMiner.h"
+#include <iostream>
 
 SpaceMiner::SpaceMiner(int pmass)
 {
-    mass = pmass;
-    currentSpeed = 0;
+    this->mass = pmass;
+    this->currentSpeed = 0;
+    this->currentThrust = 0;
+    std::cout << "SpaceMiner(int pmass = )" << pmass << std::endl;
+}
+
+SpaceMiner::~SpaceMiner() {
+    std::cout << "~SpaceMiner()" << std::endl;
+}
+
+SpaceMiner::SpaceMiner(const SpaceMiner &sm2)
+{
+    this->currentSpeed = 0;
+    this->currentThrust = 0;
+    this->mass = sm2.mass;
+    std::cout << "SpaceMiner(const SpaceMiner &sm2)" << std::endl;
 }
 
 int SpaceMiner::speed()
 {
-    return currentSpeed;
+    return this->currentSpeed;
 }
-
 
 void SpaceMiner::thrust(int newtons)
 {
-        // f=ma
-        // 20=10a
-        // 20/10=a
-        // 2=a
-        // s = 2 m/s
-    currentSpeed += (newtons / mass);
+    this->currentThrust = newtons; 
+}
+
+void SpaceMiner::tick()
+{
+    this->currentSpeed = this->currentSpeed + (this->currentThrust / this->mass);
 }
