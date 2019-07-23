@@ -4,10 +4,10 @@ class SpaceMiner
      int mass;
      int currentSpeed;
      int currentThrust;
+     int accelerationDueToGravity;
+
     public:
-     SpaceMiner(int mass);
-     ~SpaceMiner();
-     SpaceMiner(const SpaceMiner &sm2);
+     SpaceMiner(int mass, int accelerationDueToGravity = 0);
      int speed();
      void thrust(int newtons);
      void tick();
