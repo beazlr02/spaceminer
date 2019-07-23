@@ -15,8 +15,8 @@ SpaceMiner::~SpaceMiner() {
 
 SpaceMiner::SpaceMiner(const SpaceMiner &sm2)
 {
-    this->currentSpeed = 0;
-    this->currentThrust = 0;
+    this->currentSpeed = sm2.currentSpeed;
+    this->currentThrust = sm2.currentThrust;
     this->mass = sm2.mass;
     std::cout << "SpaceMiner(const SpaceMiner &sm2)" << std::endl;
 }
