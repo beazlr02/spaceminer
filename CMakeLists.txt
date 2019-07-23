@@ -13,20 +13,23 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 set(MAIN_SRC "${PROJECT_SOURCE_DIR}/src/main")
+set(SPACEMINER_SRC "${PROJECT_SOURCE_DIR}/src/spaceminer")
 set(TEST_SRC "${PROJECT_SOURCE_DIR}/src/test")
 
 # The following folder will be included
-include_directories("${MAIN_SRC}")
+include_directories("${SPACEMINER_SRC}")
 
 #define a variable SOURCES
-file(GLOB_RECURSE SOURCES "${MAIN_SRC}/*.cpp" )
+file(GLOB_RECURSE SPACEMINER_SOURCES "${SPACEMINER_SRC}/*.cpp" )
+
+file(GLOB_RECURSE MAIN_SOURCES "${MAIN_SRC}/*.cpp" )
 
 # maybe use find_library at some point when linking becomes fun
 
-add_executable(hello ${SOURCES})
+add_executable(hello ${MAIN_SOURCES} ${SPACEMINER_SOURCES})
 
 # Tests
 
-file(GLOB_RECURSE TESDTSOURCES "${TEST_SRC}/*" )
-add_executable(Test ${TESDTSOURCES} src/main/SpaceMiner.h src/main/SpaceMiner.cpp )
-add_test(testFortyTwo Test)
+file(GLOB_RECURSE TEST_SOURCES "${TEST_SRC}/*" )
+add_executable(Test ${TEST_SOURCES} ${SPACEMINER_SOURCES} )
+add_test(spaceminerTest Test)
