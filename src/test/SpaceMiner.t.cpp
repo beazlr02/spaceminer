@@ -48,5 +48,17 @@ TEST_CASE("20 KG Space Miner at rest" ) {
 }
 
 TEST_CASE("10KG Space Miner MOVING" ) {
+    SpaceMiner spc(10);
+    spc.thrust(40);
 
+    SECTION("Initial speed is 4") {
+        int s = spc.speed();
+        REQUIRE(s == 4);
+    }
+
+    SECTION("One second pulse of 20N trust") {
+        spc.thrust(20);
+        int s = spc.speed();
+        REQUIRE(s == 6);
+    }
 }

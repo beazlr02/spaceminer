@@ -19,5 +19,5 @@ void SpaceMiner::thrust(int newtons)
         // 20/10=a
         // 2=a
         // s = 2 m/s
-    currentSpeed = (newtons / mass);
+    currentSpeed += (newtons / mass);
 }
