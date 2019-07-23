@@ -4,7 +4,7 @@ class SpaceMiner
      int mass;
      int currentSpeed;
     public:
-     SpaceMiner();
+     SpaceMiner(int mass);
      int speed();
      void thrust(int newtons);
 };
