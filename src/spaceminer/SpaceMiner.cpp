@@ -29,7 +29,7 @@ void SpaceMiner::tick()
 
 
     //s = ut + ½ at²
-    int distanceMoved = this->currentSpeed +  (0.5 * accelerationDueToThrust);
+    int distanceMoved = this->currentSpeed +  (0.5 * (accelerationDueToThrust+accelerationDueToGravity));
 
 
     int speedDueToThrust = accelerationDueToThrust / tickTime;

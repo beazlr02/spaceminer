@@ -31,3 +31,23 @@ TEST_CASE("10 KG Space Miner fallingc in gravity field for some time" ) {
         REQUIRE( spc.speed() == 60);
     }
 }
+
+TEST_CASE("Space miner 100m above ground" ) {
+
+    SpaceMiner spc(10, 20);
+    
+    spc.tick();
+
+    SECTION("Descends 10m in one tick") {
+        int height = spc.height();
+        REQUIRE(height == 90);
+    }
+
+////s = ut + ½ at²
+// 20 + 10
+    SECTION("Descends another 30m in one tick") {
+        spc.tick();
+        int height = spc.height();
+        REQUIRE(height == 60);
+    }
+}
