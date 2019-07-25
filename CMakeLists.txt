@@ -29,7 +29,6 @@ file(GLOB_RECURSE MAIN_SOURCES "${MAIN_SRC}/*.cpp" )
 add_executable(hello ${MAIN_SOURCES} ${SPACEMINER_SOURCES})
 
 # Tests
-
 set(TEST_SRC "${PROJECT_SOURCE_DIR}/src/test")
 file(GLOB_RECURSE TEST_SOURCES "${TEST_SRC}/*.t.cpp" )
 add_executable(Test ${TEST_SOURCES} ${SPACEMINER_SOURCES} )
