@@ -43,11 +43,11 @@ TEST_CASE("Space miner 100m above ground" ) {
         REQUIRE(height == 90);
     }
 
-////s = ut + ½ at²
-// 20 + 10
     SECTION("Descends another 30m in one tick") {
         spc.tick();
         int height = spc.height();
+        //s = ut + ½ at²
+        // 20 + 10
         REQUIRE(height == 60);
     }
 }

@@ -6,6 +6,7 @@ class SpaceMiner
      int currentThrust;
      int accelerationDueToGravity;
      int currentHeight;
+     int impactSpeed;
 
     public:
      SpaceMiner(int mass, int accelerationDueToGravity = 0);
@@ -13,4 +14,5 @@ class SpaceMiner
      void thrust(int newtons);
      void tick();
      int height();
+     int speedAtImpact();
 };
