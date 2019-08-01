@@ -36,7 +36,6 @@ void SpaceMiner::tick()
     int toMoveTo = this->currentHeight - distanceMoved;
 
     if(toMoveTo < 0 ) {
-
         // do some sums to work out speed at impact
         int distanceRemaining = this->currentHeight;
         
@@ -48,8 +47,7 @@ void SpaceMiner::tick()
 
         this->currentHeight = 0;
     } else {
-
-    this->currentHeight = toMoveTo;
+        this->currentHeight = toMoveTo;
     }
     
     this->currentSpeed +=  speedDueToThrust + accelerationDueToGravity;
@@ -63,4 +61,8 @@ int SpaceMiner::height()
 int SpaceMiner::speedAtImpact()
 {
     return this->impactSpeed;
+}
+
+void SpaceMiner::addHeightObserver(std::function<void(int)> observer) {
+    observer(12);
 }

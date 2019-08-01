@@ -1,3 +1,5 @@
+#include <functional>
+
 class SpaceMiner
 {
     private:
@@ -15,4 +17,5 @@ class SpaceMiner
      void tick();
      int height();
      int speedAtImpact();
+     void addHeightObserver(std::function<void(int)>);
 };
