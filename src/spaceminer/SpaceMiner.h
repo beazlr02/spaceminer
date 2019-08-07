@@ -1,14 +1,9 @@
 #include <functional>
+#include <vector>
 
 class SpaceMiner
 {
-    private:
-     int mass;
-     int currentSpeed;
-     int currentThrust;
-     int accelerationDueToGravity;
-     int currentHeight;
-     int impactSpeed;
+
 
     public:
      SpaceMiner(int mass, int accelerationDueToGravity = 0);
@@ -17,5 +12,19 @@ class SpaceMiner
      void tick();
      int height();
      int speedAtImpact();
-     void addHeightObserver(std::function<void(int)>);
+          using Obs = std::function<void(int)>;
+    
+     void addHeightObserver(Obs&);
+
+
+    private:
+     int mass;
+     int currentSpeed;
+     int currentThrust;
+     int accelerationDueToGravity;
+     int currentHeight;
+     int impactSpeed;
+    std::vector<Obs> observers;
+     
+
 };

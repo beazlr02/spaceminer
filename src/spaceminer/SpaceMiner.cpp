@@ -51,6 +51,11 @@ void SpaceMiner::tick()
     }
     
     this->currentSpeed +=  speedDueToThrust + accelerationDueToGravity;
+
+    for(int i = 0 ; i < this->observers.size() ; i++) {
+        Obs o = this->observers.at(i);
+        o(this->currentHeight);
+    }
 }
 
 int SpaceMiner::height()
@@ -63,6 +68,8 @@ int SpaceMiner::speedAtImpact()
     return this->impactSpeed;
 }
 
-void SpaceMiner::addHeightObserver(std::function<void(int)> observer) {
-    observer(12);
+void SpaceMiner::addHeightObserver(std::function<void(int)> &observer) {
+    
+    this->observers.push_back(observer);
 }
+
