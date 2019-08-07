@@ -37,6 +37,5 @@ add_executable(Test ${TEST_SOURCES} ${SPACEMINER_SOURCES} )
 add_test(spaceminerTest Test)
 
 
-
 target_compile_features(hello PUBLIC cxx_std_14)
 target_compile_features(Test PUBLIC cxx_std_14)

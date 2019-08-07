@@ -12,9 +12,10 @@ class SpaceMiner
      void tick();
      int height();
      int speedAtImpact();
-          using Obs = std::function<void(int)>;
     
+     using Obs = std::function<void(int)>;
      void addHeightObserver(Obs&);
+     void addSpeedObserver(Obs&);
 
 
     private:
@@ -24,7 +25,8 @@ class SpaceMiner
      int accelerationDueToGravity;
      int currentHeight;
      int impactSpeed;
-    std::vector<Obs> observers;
+     std::vector<Obs> observers;
+     std::vector<Obs> speedObservers;
      
 
 };

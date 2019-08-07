@@ -56,6 +56,12 @@ void SpaceMiner::tick()
         Obs o = this->observers.at(i);
         o(this->currentHeight);
     }
+
+
+    for(int i = 0 ; i < this->speedObservers.size() ; i++) {
+        Obs o = this->speedObservers.at(i);
+        o(this->currentSpeed);
+    }
 }
 
 int SpaceMiner::height()
@@ -69,7 +75,10 @@ int SpaceMiner::speedAtImpact()
 }
 
 void SpaceMiner::addHeightObserver(std::function<void(int)> &observer) {
-    
     this->observers.push_back(observer);
+}
+
+void SpaceMiner::addSpeedObserver(Obs &observer) {
+    this->speedObservers.push_back(observer);
 }
 

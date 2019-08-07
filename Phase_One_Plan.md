@@ -9,12 +9,12 @@ There is GRAVITY to apply constant force
 The thruster slows the lander down - almost, uses negative thrust value
 
 The lander has height above the ground and reports that height as it changes - you have to ask
-
-
+The lander stops when it hits the ground
+The lander reports HEIGHT to an observer
 
 Todo
 
-The lander stops when it hits the ground
 The lander reports SPEED to an observer
-The lander reports HEIGHT to an observer
 Hardcoded HEIGHT needs removing
+
+Remove observers
