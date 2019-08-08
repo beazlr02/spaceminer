@@ -12,12 +12,12 @@ The lander has height above the ground and reports that height as it changes - y
 The lander stops when it hits the ground
 The lander reports HEIGHT to an observer
 The lander reports SPEED to an observer
-
-Todo
 announce crash at speed
 
+Todo
+
+Clean up lots of CODE
 Hardcoded HEIGHT needs removing
 Remove observers
-
 remove primitive obsession
 
