@@ -42,6 +42,11 @@ void SpaceMiner::tick()
         if(this->impactSpeed == -1) {
           //v² = u² + 2as
           this->impactSpeed = sqrt( (this->currentSpeed * this->currentSpeed) + ( 2 * (this->accelerationDueToGravity * distanceRemaining)) );
+                
+            for(int i = 0 ; i < this->crashObservers.size() ; i++) {
+                Obs o = this->crashObservers.at(i);
+                o(this->impactSpeed);
+            }
         }
         //if we hit the ground, signal done?
 
@@ -80,5 +85,12 @@ void SpaceMiner::addHeightObserver(std::function<void(int)> &observer) {
 
 void SpaceMiner::addSpeedObserver(Obs &observer) {
     this->speedObservers.push_back(observer);
+}
+
+void SpaceMiner::addCrashObserver(Obs &observer) {
+    this->crashObservers.push_back(observer);
+    if(this->impactSpeed != -1) {
+            observer(this->impactSpeed);
+    }
 }
 

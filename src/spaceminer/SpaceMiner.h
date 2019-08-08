@@ -16,6 +16,7 @@ class SpaceMiner
      using Obs = std::function<void(int)>;
      void addHeightObserver(Obs&);
      void addSpeedObserver(Obs&);
+     void addCrashObserver(Obs&);
 
 
     private:
@@ -27,6 +28,6 @@ class SpaceMiner
      int impactSpeed;
      std::vector<Obs> observers;
      std::vector<Obs> speedObservers;
-     
+     std::vector<Obs> crashObservers;
 
 };
