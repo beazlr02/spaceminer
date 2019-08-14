@@ -54,18 +54,3 @@ TEST_CASE("10 KG Space Miner thrusting along" ) {
     }
 }
 
-TEST_CASE("10KG Space Miner slowing down") {
-     SpaceMiner spc(10);
-    spc.thrust(20);
-    spc.tick();
-
-    SECTION("One second pulse of 40N breaking  ") {
-        spc.thrust(40);
-        spc.tick();
-
-        spc.thrust(-40);
-        spc.tick();
-        
-        REQUIRE( spc.speed() == 2);
-    }
-}

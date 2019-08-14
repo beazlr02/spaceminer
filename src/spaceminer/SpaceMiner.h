@@ -1,6 +1,21 @@
 #include <functional>
 #include <vector>
 
+class ThrottlePostion
+{
+    public:
+      int thrustInNewtons;
+      ThrottlePostion(int newtons) : thrustInNewtons{newtons} {};  
+};
+
+class ThrottlePostionFactory
+{
+    public: 
+        static ThrottlePostion closed() {return ThrottlePostion(0);}
+        static ThrottlePostion low() {return ThrottlePostion(-10);}
+        static ThrottlePostion high() {return ThrottlePostion(-100);}
+};
+
 class SpaceMiner
 {
 
@@ -9,6 +24,7 @@ class SpaceMiner
      SpaceMiner(int mass, int accelerationDueToGravity = 0);
      int speed();
      void thrust(int newtons);
+     void engine(ThrottlePostion position);
      void tick();
      int height();
      int speedAtImpact();
@@ -17,6 +33,7 @@ class SpaceMiner
      void addHeightObserver(Obs&);
      void addSpeedObserver(Obs&);
      void addCrashObserver(Obs&);
+
 
 
     private:

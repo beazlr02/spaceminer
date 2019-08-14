@@ -94,3 +94,8 @@ void SpaceMiner::addCrashObserver(Obs &observer) {
     }
 }
 
+void SpaceMiner::engine(ThrottlePostion postion)
+{
+    this->thrust(postion.thrustInNewtons);
+}
+
