@@ -14,12 +14,12 @@ TEST_CASE("Space miner at constant velocity 10m/s 100m above ground" ) {
 
     SECTION("Descends 5m in one tick") {
         int height = spc.height();
-        REQUIRE(height == 95);
+        REQUIRE(height == 105);
     }
 
     SECTION("Descends another 15m in one tick") {
         spc.tick();
         int height = spc.height();
-        REQUIRE(height == 80);
+        REQUIRE(height == 120);
     }
 }

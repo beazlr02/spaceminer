@@ -14,7 +14,7 @@ SpaceMiner::SpaceMiner(int pmass, int accelerationDueToGravity)
 
 int SpaceMiner::speed()
 {
-    return this->currentSpeed;
+    return abs(this->currentSpeed);
 }
 
 void SpaceMiner::thrust(int newtons)
@@ -26,12 +26,13 @@ void SpaceMiner::tick()
 {
     int tickTime = 1; //second
 
+    //f = ma => a = f/m
     int accelerationDueToThrust =  this->currentThrust / this->mass;
 
     //s = ut + ½ at²
-    int distanceMoved = this->currentSpeed +  (0.5 * (accelerationDueToThrust+accelerationDueToGravity));
+    int distanceMoved = this->currentSpeed +  (0.5 * (accelerationDueToGravity - accelerationDueToThrust));
 
-    int speedDueToThrust = accelerationDueToThrust / tickTime;
+    int speedDueToThrust = (-1 * accelerationDueToThrust) / tickTime;
     
     int toMoveTo = this->currentHeight - distanceMoved;
 
@@ -54,7 +55,7 @@ void SpaceMiner::tick()
     } else {
         this->currentHeight = toMoveTo;
     }
-    
+    //current speed is actually a velocity towards ground
     this->currentSpeed +=  speedDueToThrust + accelerationDueToGravity;
 
     for(int i = 0 ; i < this->observers.size() ; i++) {
@@ -65,7 +66,7 @@ void SpaceMiner::tick()
 
     for(int i = 0 ; i < this->speedObservers.size() ; i++) {
         Obs o = this->speedObservers.at(i);
-        o(this->currentSpeed);
+        o(this->speed());
     }
 }
 

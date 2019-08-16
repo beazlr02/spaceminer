@@ -10,10 +10,17 @@ class ThrottlePostion
 
 class ThrottlePostionFactory
 {
+    private:
+        int lowValue;
+        int mediumValue;
+        int highValue;
+
     public: 
-        static ThrottlePostion closed() {return ThrottlePostion(0);}
-        static ThrottlePostion low() {return ThrottlePostion(-10);}
-        static ThrottlePostion high() {return ThrottlePostion(-100);}
+        ThrottlePostionFactory(int low, int medium, int high) : lowValue{low}, mediumValue{medium}, highValue{high} {};
+        ThrottlePostion closed() {return ThrottlePostion(0);}
+        ThrottlePostion low() {return ThrottlePostion(lowValue);}
+        ThrottlePostion medium() {return ThrottlePostion(mediumValue);}
+        ThrottlePostion high() {return ThrottlePostion(highValue);}
 };
 
 class SpaceMiner

@@ -13,16 +13,16 @@ TEST_CASE("Observing height" ) {
     SpaceMiner spc(10);
     spc.thrust(100);
     
-    CapturingThing *thing= new CapturingThing();
+    CapturingThing *heightObserver= new CapturingThing();
 
-    std::function<void(int)> observer = [thing](int i) { thing->value = i; };
+    std::function<void(int)> observer = [heightObserver](int i) { heightObserver->value = i; };
 
     spc.addHeightObserver(observer);
 
     spc.tick();
 
     SECTION("observes speed") {
-        REQUIRE( thing->value == 95);
+        REQUIRE( heightObserver->value == 105);
     }
 }
 
@@ -32,19 +32,19 @@ TEST_CASE("Observing height with multiple observers" ) {
     SpaceMiner spc(10);
     spc.thrust(100);
     
-    CapturingThing *thing= new CapturingThing();
-    CapturingThing *otherThing= new CapturingThing();
+    CapturingThing *heightObserver= new CapturingThing();
+    CapturingThing *otherHeightObserver= new CapturingThing();
 
-    std::function<void(int)> observer1 = [thing](int i) { thing->value = i; };
-    std::function<void(int)> observer2 = [otherThing](int i) { otherThing->value = i; };
+    std::function<void(int)> observer1 = [heightObserver](int i) { heightObserver->value = i; };
+    std::function<void(int)> observer2 = [otherHeightObserver](int i) { otherHeightObserver->value = i; };
 
-    spc.addSpeedObserver(observer1);
-    spc.addSpeedObserver(observer2);
+    spc.addHeightObserver(observer1);
+    spc.addHeightObserver(observer2);
 
     spc.tick();
 
     SECTION("everyone observes speed") {
-        REQUIRE( thing->value == 10);
-        REQUIRE( otherThing->value == 10);
+        REQUIRE( heightObserver->value == 105);
+        REQUIRE( otherHeightObserver->value == 105);
     }
 }

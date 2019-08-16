@@ -37,6 +37,7 @@ TEST_CASE("20 KG Space Miner at rest" ) {
     }
 }
 
+
 TEST_CASE("10 KG Space Miner thrusting along" ) {
 
     SpaceMiner spc(10);

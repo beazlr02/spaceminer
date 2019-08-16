@@ -20,7 +20,7 @@ TEST_CASE("10 KG Space Miner fallingc in gravity field" ) {
     }
 }
 
-TEST_CASE("10 KG Space Miner fallingc in gravity field for some time" ) {
+TEST_CASE("10 KG Space Miner falling in gravity field for some time" ) {
 
     SpaceMiner spc(10,20);
     spc.tick();
@@ -29,6 +29,19 @@ TEST_CASE("10 KG Space Miner fallingc in gravity field for some time" ) {
 
     SECTION("Falls") {
         REQUIRE( spc.speed() == 60);
+    }
+}
+
+
+TEST_CASE("10 KG Space Miner falling in earth gravity field for some time" ) {
+
+    SpaceMiner spc(10,10);
+    spc.tick();
+    spc.tick();
+    spc.tick();
+
+    SECTION("Falls") {
+        REQUIRE( spc.speed() == 30);
     }
 }
 
