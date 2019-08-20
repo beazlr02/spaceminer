@@ -11,7 +11,8 @@ class CapturingThing
 TEST_CASE("Observing speed" ) {
 
     SpaceMiner spc(10);
-    spc.thrust(100);
+    ThrottlePostionFactory factory(20, 40, 100);
+    spc.engine(factory.high());
     
     CapturingThing *speedObserver= new CapturingThing();
 
@@ -30,7 +31,8 @@ TEST_CASE("Observing speed" ) {
 TEST_CASE("Observing speed with multiple observers" ) {
 
     SpaceMiner spc(10);
-    spc.thrust(100);
+    ThrottlePostionFactory factory(20, 40, 100);
+    spc.engine(factory.high());
     
     CapturingThing *speedObserver= new CapturingThing();
     CapturingThing *otherSpeedObserver= new CapturingThing();
