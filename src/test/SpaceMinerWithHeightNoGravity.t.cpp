@@ -6,7 +6,9 @@ TEST_CASE("Space miner at constant velocity 10m/s 100m above ground" ) {
 // hard coded 100 in implementation
 //s = ut + ½ at²
     SpaceMiner spc(10);
-    spc.thrust(100);
+    ThrottlePostionFactory factory(20, 40, 100);
+    spc.engine(factory.high());
+    
     spc.tick();
     SECTION("Falls") {
         REQUIRE( spc.speed() == 10);
