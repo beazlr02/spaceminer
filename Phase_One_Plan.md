@@ -14,25 +14,15 @@ The lander reports HEIGHT to an observer
 The lander reports SPEED to an observer
 announce crash at speed
 
+There is a throttle not a thrust in newtons method - Change thruster to take be off, half, full levels
+
 Todo
 
-Clean up lots of CODE
 Hardcoded HEIGHT needs removing
-Change thruster to take be off, half, full levels
+Clean up lots of CODE
 Remove observers
 Pipe adapters
 remove primitive obsession
 
-
-
-//// Thrust reworking
-
-    spc.thrust(100);
-    spc.thrust(-10);
-    spc.thrust(40);
-    spc.thrust(-40);       SECTION("One second pulse of 40N breaking  ") {
-    spc.thrust(20);
-
-add new method that takes an object describing the magnitude of how open the throttle is
 
 
