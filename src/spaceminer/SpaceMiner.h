@@ -30,7 +30,6 @@ class SpaceMiner
     public:
      SpaceMiner(int mass, int accelerationDueToGravity = 0);
      int speed();
-     void thrust(int newtons);
      void engine(ThrottlePostion position);
      void tick();
      int height();
@@ -53,5 +52,5 @@ class SpaceMiner
      std::vector<Obs> observers;
      std::vector<Obs> speedObservers;
      std::vector<Obs> crashObservers;
-
+     void thrust(int newtons);
 };
