@@ -13,12 +13,14 @@ The lander stops when it hits the ground
 The lander reports HEIGHT to an observer
 The lander reports SPEED to an observer
 announce crash at speed
-
 There is a throttle not a thrust in newtons method - Change thruster to take be off, half, full levels
+Hardcoded HEIGHT needs removing
+
+
 
 Todo
 
-Hardcoded HEIGHT needs removing
+
 Clean up lots of CODE
 Remove observers
 Pipe adapters

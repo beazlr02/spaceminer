@@ -2,12 +2,12 @@
 #include <iostream>
 #include <math.h>
 
-SpaceMiner::SpaceMiner(int pmass, int accelerationDueToGravity)
+SpaceMiner::SpaceMiner(int pmass, int accelerationDueToGravity, int heightAboveGroundInMeters)
 {
     this->mass = pmass;
     this->currentSpeed = 0;
     this->currentThrust = 0;
-    this->currentHeight = 100; //CoV
+    this->currentHeight = heightAboveGroundInMeters; //CoV
     this->accelerationDueToGravity = accelerationDueToGravity;
     this->impactSpeed = -1;
 }

@@ -29,6 +29,7 @@ TEST_CASE("Observing height" ) {
 }
 
 
+
 TEST_CASE("Observing height with multiple observers" ) {
 
     SpaceMiner spc(10);

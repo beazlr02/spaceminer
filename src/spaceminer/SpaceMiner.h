@@ -28,7 +28,7 @@ class SpaceMiner
 
 
     public:
-     SpaceMiner(int mass, int accelerationDueToGravity = 0);
+     SpaceMiner(int mass, int accelerationDueToGravity = 0, int heightAboveGroundInMeters = 100);
      int speed();
      void engine(ThrottlePostion position);
      void tick();
