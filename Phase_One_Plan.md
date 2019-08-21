@@ -20,12 +20,11 @@ Hardcoded HEIGHT needs removing
 
 Todo
 
-
-Clean up lots of CODE
-Remove observers
 Pipe adapters
+Remove observers
 remove primitive obsession
-speed is zero when on the ground
+speed is zero when on the ground?
 
+Clean up more CODE
 
 
