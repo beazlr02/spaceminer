@@ -53,4 +53,7 @@ class SpaceMiner
      std::vector<Obs> speedObservers;
      std::vector<Obs> crashObservers;
      void thrust(int newtons);
+     void alterCurrentHeightBy(int);
+     void alterSpeedBy(int);
+     void setImpactSpeed(int);
 };

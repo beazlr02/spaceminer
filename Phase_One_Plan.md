@@ -25,6 +25,7 @@ Clean up lots of CODE
 Remove observers
 Pipe adapters
 remove primitive obsession
+speed is zero when on the ground
 
 
 
