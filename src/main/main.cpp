@@ -19,7 +19,7 @@ int main()
     //     OutPipe().loop();
     // }
     SpaceMiner spc(10,10,*HEIGHT);
-    ThrottlePostionFactory factory(5, 40, 100);
+    ThrottlePostionFactory factory(48, 95, 190);
   
     std::function<void(int)> observer1 = [](int i) { *HEIGHT = i; };
     std::function<void(int)> speedObserver = [](int i) { *SPEED = i; };
@@ -29,14 +29,28 @@ int main()
     spc.addSpeedObserver(speedObserver);
     spc.addCrashObserver(crashObserver);
 
-    while(*CRASH_SPEED < 0) {
-        
+    
+    bool notDone = true;
+    while(notDone) {       
+
+        if(*SPEED > 3) {
+            spc.engine(factory.high());
+        } else if(*SPEED > 2) {
+            spc.engine(factory.medium());
+        } else if(*SPEED > 1) {
+            spc.engine(factory.low());
+        } else {
+            spc.engine(factory.closed());
+        }
+
         cout << "HEIGHT " << *HEIGHT << " SPEED " << *SPEED << "\n";
 
         spc.tick();
+
+        notDone = *CRASH_SPEED < 0;
     }
 
-        cout << "CRASH SPEED " << *CRASH_SPEED << "\n";
+    cout << "CRASH SPEED " << *CRASH_SPEED << "\n";
 
 
     return 0;
