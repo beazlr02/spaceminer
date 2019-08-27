@@ -28,3 +28,21 @@ speed is zero when on the ground?
 Clean up more CODE
 
 
+
+Adapters can be ticked
+
+When a command pipe is ticked we 
+ - read last command from the pipe and assert the correct action is performed on the space miner
+ - read no command and assert nothing happens
+ (do we buffer up commands or is it last one wins?)
+ - A pipe keeps itself open
+ - A pipe will not block reads
+ - A pipe will return character data, whole lines
+
+When a query pipe is ticked we
+ - output any changed value as a line of characters, assert is as expected
+ - if nothing has changed then nothing output
+ - A pipe keeps itself open
+ - A pipe will not block writes
+ - A pipe will output new line terminated character data
+
