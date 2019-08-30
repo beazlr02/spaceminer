@@ -114,4 +114,11 @@ TEST_CASE("Parsing messages from the pipe" ) {
         pipeAdapter.tick();
         REQUIRE( captor.throttlePosition.thrustInNewtons == expected.thrustInNewtons);
     }
+
+    SECTION("no command") {
+        ThrottlePostion expected{-1};
+        iPipe.lineToRead = "\n";
+        pipeAdapter.tick();
+        REQUIRE( captor.throttlePosition.thrustInNewtons == expected.thrustInNewtons);
+    }
 }

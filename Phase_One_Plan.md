@@ -34,9 +34,10 @@ Adapters can be ticked
 When a command pipe is ticked we 
  - read last command from the pipe and assert the correct action is performed on the space miner
  - read no command and assert nothing happens
- (do we buffer up commands or is it last one wins?)
+ (do we buffer up commands or is it last one wins?) - its last one wins
+
  - A pipe keeps itself open
- - A pipe will not block reads
+ - A pipe will not block reads (actually a pipe will return a \n character if it has an incomplete line in its buffer)
  - A pipe will return character data, whole lines
 
 When a query pipe is ticked we
