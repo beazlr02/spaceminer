@@ -52,17 +52,19 @@ EnginePipeAdapter::EnginePipeAdapter(ThrottlePostionFactory tpf, EngineTrait* en
 
 void EnginePipeAdapter::tick()
 {
-    std::string HIGH = "high\n";
-    std::string MEDIUM = "medium\n";
-    std::string LOW = "low\n";
+    const std::string HIGH = "high\n";
+    const std::string MEDIUM = "medium\n";
+    const std::string LOW = "low\n";
+    const std::string CLOSED = "closed\n";
+
     std::string line = iPipe->line();
     if(line == HIGH) {
-    this->engineTrait->engine(this->tpf.high());
+        this->engineTrait->engine(this->tpf.high());
     } else if(line == MEDIUM) {
         this->engineTrait->engine(this->tpf.medium());
     } else if(line == LOW) {
         this->engineTrait->engine(this->tpf.low());
-    } else {
+    } else if(line == CLOSED) {
         this->engineTrait->engine(this->tpf.closed());
     }
 }
@@ -101,6 +103,14 @@ TEST_CASE("Parsing messages from the pipe" ) {
     SECTION("closed") {
         ThrottlePostion expected{0};
         iPipe.lineToRead = "closed\n";
+        pipeAdapter.tick();
+        REQUIRE( captor.throttlePosition.thrustInNewtons == expected.thrustInNewtons);
+    }
+
+
+    SECTION("garbage") {
+        ThrottlePostion expected{-1};
+        iPipe.lineToRead = "garbage\n";
         pipeAdapter.tick();
         REQUIRE( captor.throttlePosition.thrustInNewtons == expected.thrustInNewtons);
     }
