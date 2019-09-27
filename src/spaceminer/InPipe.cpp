@@ -41,6 +41,8 @@ void InPipe::readOneLine()
     }
 }
 void InPipe::pipe() {
+    cout << "mkfifo" << '\n';
     int fifo = mkfifo("/tmp/fifo", S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
     handle.open("/tmp/fifo");
+    cout << "madefifo" << '\n';
 }

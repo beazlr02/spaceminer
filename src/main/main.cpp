@@ -13,11 +13,20 @@ int main()
 {
     // Output the hello world text
     //World().greet();
-    //InPipe().forever();
+    InPipe().forever();
     // while(true) {
     //     InPipe().loop();
     //     OutPipe().loop();
     // }
+    
+
+    //land();
+
+    return 0;
+} 
+
+void land()
+{
     SpaceMiner spc(10,10,*HEIGHT);
     ThrottlePostionFactory factory(48, 95, 190);
   
@@ -52,6 +61,4 @@ int main()
 
     cout << "CRASH SPEED " << *CRASH_SPEED << "\n";
 
-
-    return 0;
-} 
+}

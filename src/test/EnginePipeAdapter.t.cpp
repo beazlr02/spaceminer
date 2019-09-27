@@ -1,5 +1,6 @@
 #include "catch.hpp"
 #include "SpaceMiner.h"
+#include "InputPipe.h"
 
 using namespace std;
 
@@ -17,20 +18,20 @@ class EngineTraitCaptor : public EngineTrait
         void engine(ThrottlePostion position){this->throttlePosition = position;}; 
 };
 
-class InputPipe
+class StubInputPipe : public InputPipe
 {
     public:
         std::string lineToRead;
-        InputPipe();
+        StubInputPipe();
         std::string line();
 };
 
-InputPipe::InputPipe() : lineToRead("")
+StubInputPipe::StubInputPipe() : lineToRead("")
 {
 
 }
 
-std::string InputPipe::line()
+std::string StubInputPipe::line()
 {
     return lineToRead;
 }
@@ -72,7 +73,7 @@ void EnginePipeAdapter::tick()
 TEST_CASE("Parsing messages from the pipe" ) {
 
     EngineTraitCaptor captor;
-    InputPipe iPipe{};
+    StubInputPipe iPipe{};
     ThrottlePostionFactory tpf{10,15,20};
     EnginePipeAdapter pipeAdapter{tpf, &captor, &iPipe};
 
@@ -117,7 +118,7 @@ TEST_CASE("Parsing messages from the pipe" ) {
 
     SECTION("no command") {
         ThrottlePostion expected{-1};
-        iPipe.lineToRead = "\n";
+        iPipe.lineToRead = "g\n";
         pipeAdapter.tick();
         REQUIRE( captor.throttlePosition.thrustInNewtons == expected.thrustInNewtons);
     }
