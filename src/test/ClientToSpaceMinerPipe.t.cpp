@@ -24,31 +24,23 @@ class FifoInputPipe : public InputPipe
 
 void FifoInputPipe::startThreadForPipeMGMT()
 {
-    //guard
     this->t = std::thread( &FifoInputPipe::openFifo, this);
 }
 
+#define guard(b) if(b) return;
+
 void FifoInputPipe::openFifo()
 {
-    cout << "Thread started to open fifo " << this->path <<'\n';
     int mkfifoResult = mkfifo(this->path, S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
-    cout << "Thread mkfifio " << mkfifoResult << '\n';
-
-    //guard
-    if(mkfifoResult != 0 ) {
-        cout << "Thread guarded" << '\n';
+    guard(mkfifoResult != 0);
+    /*guard*/if(mkfifoResult != 0 ) {
         return;
     }
-
-    cout << "This " << this << " fifo " << &(this->fifoHandle) << " path " << this->path << '\n';
     this->fifoHandle.open(this->path);  
-    cout << "Opened fifio" << '\n';
 }
 
 FifoInputPipe::FifoInputPipe(const char* path) : fifoHandle(), path(path), t(&FifoInputPipe::openFifo, this)
 {
-    //startThreadForPipeMGMT();
-    cout << "Construction complete" << '\n';
 }
 
 std::string FifoInputPipe::line()
@@ -57,9 +49,9 @@ std::string FifoInputPipe::line()
     if ( ! fifoHandle.is_open() )
     {
         //startThreadForPipeMGMT();   
-        return "closed";
+        return "closed\n";
     } else {
-        return "The expected line";
+        return "The expected line\n";
     }
     
 }
@@ -90,14 +82,11 @@ TEST_CASE("Reading from a pipe" ) {
         const char* path = name2;
         FifoInputPipe lePipe{path};
 
-        cout << "Starting first test" << '\n';
         ofstream handle;
-        cout << "test handle open" << '\n';
         while( !fileExists(path) ) {
             std::this_thread::sleep_for(1s);
         }
         handle.open(path);
-        cout << "test writing to handle" << '\n';
         handle << "The expected line" << '\n';
 
         //read that line
@@ -105,7 +94,7 @@ TEST_CASE("Reading from a pipe" ) {
 
         handle.close();
 
-        REQUIRE( line == "The expected line");
+        REQUIRE( line == "The expected line\n");
     }
 /*
     SECTION("reads as a newline because no newline recieved yet") 
